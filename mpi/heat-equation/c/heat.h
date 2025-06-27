@@ -45,9 +45,11 @@ void generate_field(field *temperature, parallel_data *parallel);
 
 double average(field *temperature);
 
-void exchange(field *temperature, parallel_data *parallel);
+void exchange_immediate(field *temperature, parallel_data *parallel, MPI_Request *requests);
+void exchange_wait(field *temperature, parallel_data *parallel, MPI_Request *requests);
 
-void evolve(field *curr, field *prev, double a, double dt);
+void evolve_local(field *curr, field *prev, double a, double dt);
+void evolve_boundary(field *curr, field *prev, double a, double dt);
 
 void write_field(field *temperature, int iter, parallel_data *parallel);
 

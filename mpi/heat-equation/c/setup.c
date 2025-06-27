@@ -142,23 +142,18 @@ void set_field_dimensions(field *temperature, int nx, int ny,
 
 void parallel_setup(parallel_data *parallel, int nx, int ny)
 {
-
-    // TODO start: query number of MPI tasks, and rank and store them in
+    // query number of MPI tasks, and rank and store them in
     // parallel struct (size and rank members)
+    MPI_Comm_size(MPI_COMM_WORLD, &(parallel->size));
+    MPI_Comm_rank(MPI_COMM_WORLD, &(parallel->rank));
 
-
-    // TODO end
     parallel_set_dimensions(parallel, nx, ny);
 
-    // TODO start
     // Determine also up and down neighbours of this domain and store
     // them in nup and ndown attributes, remember to cope with
     // boundary domains appropriatly
-
-    parallel->nup =
-    parallel->ndown =
-
-    // TODO end
+    parallel->nup = parallel->rank > 0 ? parallel->rank - 1 : MPI_PROC_NULL;
+    parallel->ndown = (parallel->rank + 1) < parallel->size ? parallel->rank + 1 : MPI_PROC_NULL;
 }
 
 void parallel_set_dimensions(parallel_data *parallel, int nx, int ny)
@@ -170,7 +165,6 @@ void parallel_set_dimensions(parallel_data *parallel, int nx, int ny)
         printf("Cannot divide grid evenly to processors\n");
         MPI_Abort(MPI_COMM_WORLD, -2);
     }
-
 }
 
 
@@ -180,4 +174,3 @@ void finalize(field *temperature1, field *temperature2)
     free(temperature1->data);
     free(temperature2->data);
 }
-
