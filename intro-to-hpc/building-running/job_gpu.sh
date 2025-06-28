@@ -12,4 +12,4 @@
 # Enable GPU-aware MPI
 export MPICH_GPU_SUPPORT_ENABLED=1
 
-srun ./prog
+srun ./gpu/prog.x

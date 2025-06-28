@@ -7,9 +7,9 @@ COMMONDIR=.
 ifeq ($(COMP),gnu)
 CXX=CC
 CC=gcc
-HIPCC=hipcc 
+HIPCC=hipcc
 HIPFLAGS=-O3 $(GPU_MEMORY)
-GPU_MEMORY=-DPINNED_MEMORY 
+GPU_MEMORY=-DPINNED_MEMORY
 CCFLAGS=-g -O3 -march=native -I$(COMMONDIR) -DNDEBUG -fopenmp $(GPU_MEMORY) -D__HIP_PLATFORM_AMD__
 LDFLAGS=-lamdhip64
 LIBS=-lpng
@@ -28,7 +28,7 @@ LIBS=-lpng
 endif
 
 
-EXE=heat_hip
+EXE=heat_hip.x
 OBJS=main.o heat.o core.o setup.o io.o utilities.o
 OBJS_HIP=core_hip.o
 OBJS_PNG=$(COMMONDIR)/pngwriter.o

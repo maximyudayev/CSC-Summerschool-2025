@@ -8,4 +8,4 @@
 #SBATCH --ntasks-per-node=2
 #SBATCH --time=00:05:00
 
-srun ./prog
+srun ./cpu/prog.x

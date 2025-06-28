@@ -4,10 +4,12 @@
 #SBATCH --reservation=SummerSchoolGPU
 #SBATCH --output=%x.%J.out
 #SBATCH --partition=small-g
-#SBATCH --nodes=1 --ntasks-per-node=1 --gpus-per-node=1
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=2
+#SBATCH --gpus-per-node=2
 #SBATCH --time=00:05:00
 
 # Enable GPU-aware MPI
 export MPICH_GPU_SUPPORT_ENABLED=1
 
-srun ./heat_hip
+srun ./heat-equation-3d/heat_hip.x
