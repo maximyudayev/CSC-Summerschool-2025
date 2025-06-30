@@ -1,0 +1,5 @@
+
+
+out of memory in main.cpp at line 30
+srun: error: nid005026: task 0: Exited with exit code 1
+srun: Terminating StepId=11664224.0

@@ -24,9 +24,9 @@ int main(int argc, char **argv) {
     printf("Launching with %d blocks and %d threads\n", num_blocks,
            num_threads);
 
-    // TODO: Wrap this kernel launch with the kernel launch macro, then compile
+    // Wrap this kernel launch with the kernel launch macro, then compile
     // and run the program with different arguments.
-    hello<<<num_blocks, num_threads>>>(num_blocks, num_threads);
+    LAUNCH_KERNEL(hello, num_blocks, num_threads, 0, 0, num_blocks, num_threads);
 
     [[maybe_unused]] const auto result = hipDeviceSynchronize();
 

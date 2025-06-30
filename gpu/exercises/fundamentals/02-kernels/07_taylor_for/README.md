@@ -9,3 +9,6 @@ for block sizes.
 
 When is the 'consecutive' (or CPU-style) loop especially slow?
 Are there situations when it's not that bad?
+
+## Solution
+1024 Threads in the minial implementation gives the best speedup.

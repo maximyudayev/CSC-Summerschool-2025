@@ -1,6 +1,5 @@
 #include <hip/hip_runtime.h>
 
-// TODO 1: Go to this file and fill in the blanks there
 #include "error_checking.hpp"
 
 __global__ void hello() {
@@ -11,14 +10,16 @@ __global__ void hello() {
 }
 
 int main(int argc, char **argv) {
-    // TODO 2: After completing the error checking in the separate file
+    // After completing the error checking in the separate file
     // fix any errors with this launch.
     // To do that,
     // - compile the program
     // - run it
     // - fix any errors with the launch parameters
-    // - repeat
-    LAUNCH_KERNEL(hello, dim3(0, 0, 1), dim3(1025, 30000, 1), 9999999, 0);
+    // - repeat 1025 30000 1
+    dim3 blockIdx = dim3(1025,30,1);
+    dim3 threadIdx = dim3(1,1024,1);
+    LAUNCH_KERNEL(hello, blockIdx, threadIdx, 65536, 0);
     [[maybe_unused]] const auto result = hipDeviceSynchronize();
 
     return 0;

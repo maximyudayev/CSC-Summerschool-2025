@@ -1,0 +1,5 @@
+Launching with 1 blocks and 1025 threads
+Error with kernel "hello" in main.cpp at line 29
+hipErrorInvalidValue: invalid argument
+srun: error: nid005026: task 0: Exited with exit code 1
+srun: Terminating StepId=11661597.0
